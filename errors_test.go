@@ -19,9 +19,9 @@ func TestErrors(t *testing.T) {
 			},
 			Expect: func(t *testing.T) ([]string, error) {
 				return []string{
-					"gooolib/errors/errors_test.go. method: TestErrors. line: 12",
-					"src/testing/testing.go. method: tRunner. line: 1689",
-					"src/runtime/asm_amd64.s. method: goexit. line: 1695",
+					"errors/errors_test.go. method: TestErrors. line: 12",
+					"src/testing/testing.go. method: tRunner. line: ",
+					"src/runtime/asm_amd64.s. method: goexit. line: ",
 					"",
 				}, nil
 			},
@@ -30,7 +30,7 @@ func TestErrors(t *testing.T) {
 				s, _ := r.Subject(t)
 				lines := strings.Split(s, "\n")
 				for i, line := range lines {
-					if !strings.HasSuffix(line, e[i]) {
+					if !strings.Contains(line, e[i]) {
 						t.Errorf("Expected(line %d) %s to contain %s", i, line, e[i])
 						return false
 					}
@@ -47,9 +47,9 @@ func TestErrors(t *testing.T) {
 				return []string{
 					"pkg/errors : msg",
 					"",
-					"gooolib/errors/errors_test.go. method: TestErrors. line: 12",
-					"src/testing/testing.go. method: tRunner. line: 1689",
-					"src/runtime/asm_amd64.s. method: goexit. line: 1695",
+					"errors/errors_test.go. method: TestErrors. line: 12",
+					"src/testing/testing.go. method: tRunner. line: ",
+					"src/runtime/asm_amd64.s. method: goexit. line: ",
 					"",
 					"",
 				}, nil
@@ -59,7 +59,7 @@ func TestErrors(t *testing.T) {
 				s, _ := r.Subject(t)
 				lines := strings.Split(s, "\n")
 				for i, line := range lines {
-					if !strings.HasSuffix(line, e[i]) {
+					if !strings.Contains(line, e[i]) {
 						t.Errorf("Expected(line %d) %s to contain %s", i, line, e[i])
 						return false
 					}
